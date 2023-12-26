@@ -7,9 +7,6 @@ const Footer = () => {
       <span className="flex justify-center items-center">
         <PiCopyrightThin /> Copyryght | André Felipe Rodrigues de Freitas
       </span>
-      <div className="flex justify-center items-center text-white">
-        <h1>Contatos</h1>
-      </div>
     </div>
   );
 };
