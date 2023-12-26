@@ -1,17 +1,11 @@
 "use client";
 
-import { ParqueDoCoco2, ParqueDoCoco6 } from "@/assets/imgs/ParqueDoCoco";
+import { ParqueDoCoco6 } from "@/assets/imgs/ParqueDoCoco";
 import { DragaoDoMar04 } from "@/assets/imgs/dragaoDoMar";
 import { TheatroJoseDeAlencar5 } from "@/assets/imgs/theatroJoseDeAlencar";
 import { MecardoCentral05 } from "@/assets/imgs/mercadoCentral";
 import { ArenaCastelao03 } from "@/assets/imgs/arenaCastelão";
-import {
-  FeirinhaDaBeiraMar01,
-  FeirinhaDaBeiraMar02,
-  FeirinhaDaBeiraMar03,
-  FeirinhaDaBeiraMar04,
-  FeirinhaDaBeiraMar05,
-} from "@/assets/imgs/feirinhaBeiraMar";
+import { FeirinhaDaBeiraMar01 } from "@/assets/imgs/feirinhaBeiraMar";
 import { CardLocale } from "@/components/cardLocale";
 import { Loading } from "@/components/loading";
 import { getTouristSpots } from "@/services/files";
@@ -72,12 +66,9 @@ export default function Home() {
             key={spot.title}
             label={spot.title}
             img={mainBanner(spot)}
+            page={`/${spot.slug}`}
           />
         ))}
-        {/* =<CardLocale label="Museu do Ceará" />
-        <CardLocale label="Feirinha da Beiras Mar" />
-        <CardLocale label="Mercado dos Peixes" />
-        <CardLocale label="Fortaleza de Nossa Senhora da Assunção" /> */}
       </div>
     </>
   );
