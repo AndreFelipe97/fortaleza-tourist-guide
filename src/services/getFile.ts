@@ -28,10 +28,5 @@ export async function getTouristSpot(slug: string): Promise<TouristSpot> {
     }
   });
 
-  console.log(slug)
-  console.log(touristSpots);
-
-  console.log(touristSpots.filter((touristSpot) => touristSpot.slug === slug)[0]);
-
   return touristSpots.filter((touristSpot) => touristSpot.slug === slug)[0];
 }

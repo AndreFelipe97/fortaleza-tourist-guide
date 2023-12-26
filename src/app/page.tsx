@@ -1,5 +1,3 @@
-"use client";
-
 import { ParqueDoCoco6 } from "@/assets/imgs/ParqueDoCoco";
 import { DragaoDoMar04 } from "@/assets/imgs/dragaoDoMar";
 import { TheatroJoseDeAlencar5 } from "@/assets/imgs/theatroJoseDeAlencar";
@@ -17,31 +15,8 @@ interface TouristSpot {
   content: string;
 }
 
-export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [touristSpots, setTouristSpots] = useState<TouristSpot[]>([]);
-  getTouristSpots();
-
-  async function getSpots() {
-    const spots = await getTouristSpots();
-    setTouristSpots(spots);
-  }
-
-  useEffect(() => {
-    setLoading(true);
-
-    getSpots();
-
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <Loading />
-      </div>
-    );
-  }
+export default async function Home() {
+  const touristSpots = await getTouristSpots();
 
   function mainBanner(spot: TouristSpot) {
     if (spot.slug === "centro-dragão-do-mar-de-arte-e-cultura") {

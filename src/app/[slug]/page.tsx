@@ -62,10 +62,14 @@ export default function Spot() {
   );
 
   async function getSpot() {
-    const spot = await getTouristSpot(
-      window.location.pathname.replace("/", "")
-    );
-    setTouristSpot(spot);
+    try {
+      const spot = await getTouristSpot(
+        window.location.pathname.replace("/", "")
+      );
+      setTouristSpot(spot);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
