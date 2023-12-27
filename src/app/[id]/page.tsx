@@ -63,15 +63,18 @@ export default function Spot() {
     <>
       <Link
         className="
-          fixed 
-          w-28 
+          md:fixed 
+          md:w-28 
           h-12
-          top-36 
-          right-3 
+          md:top-36 
+          md:right-3 
           bg-green-600 
           text-white 
           rounded-md
           decoration-none
+          ml-5
+          mr-5
+          mt-2
           flex
           justify-center
           items-center
@@ -80,12 +83,12 @@ export default function Spot() {
       >
         Fale conosco
       </Link>
-      <div className="flex justify-center gap-8 flex-wrap p-40">
-        <h1 className="text-white text-3xl">
+      <div className="flex justify-center gap-8 flex-wrap ml-5 mr-5 mt-2 md:p-40">
+        <h1 className="text-white text-xl md:text-3xl">
           {touristSpot.title && touristSpot.title}
         </h1>
 
-        <div className="flex justify-start gap-8 flex-wrap ">
+        <div className="flex justify-start gap-8 flex-wrap">
           {touristSpot.content &&
             touristSpot.content.split("|").map((paragraph, index) => (
               <p className="text-white text-justify" key={index}>

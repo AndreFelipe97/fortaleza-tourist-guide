@@ -11,7 +11,7 @@ interface CardLocaleProps {
 const CardLocale: React.FC<CardLocaleProps> = ({ label, img, page }) => {
   return (
     <div className="flex justify-center items-center flex-col gap-4">
-      <h1 className="text-white text-xl">{label}</h1>
+      <h1 className="text-white text-xl text-center">{label}</h1>
       <Link href={page}>
         <Image src={img} alt="Fortaleza" width={500} height={321} />
       </Link>
