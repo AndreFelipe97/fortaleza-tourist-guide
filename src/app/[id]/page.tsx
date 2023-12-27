@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { usePrismicDocumentByUID } from "@prismicio/react";
+import Link from "next/link";
 
 interface TouristSpot {
   uid: string;
@@ -59,24 +60,45 @@ export default function Spot() {
   }
 
   return (
-    <div className="flex justify-center gap-8 flex-wrap p-40">
-      <h1 className="text-white text-3xl">
-        {touristSpot.title && touristSpot.title}
-      </h1>
+    <>
+      <Link
+        className="
+          fixed 
+          w-28 
+          h-12
+          top-36 
+          right-3 
+          bg-green-600 
+          text-white 
+          rounded-md
+          decoration-none
+          flex
+          justify-center
+          items-center
+        "
+        href="/fale-conosco"
+      >
+        Fale conosco
+      </Link>
+      <div className="flex justify-center gap-8 flex-wrap p-40">
+        <h1 className="text-white text-3xl">
+          {touristSpot.title && touristSpot.title}
+        </h1>
 
-      <div className="flex justify-start gap-8 flex-wrap ">
-        {touristSpot.content &&
-          touristSpot.content.split("|").map((paragraph, index) => (
-            <p className="text-white text-justify" key={index}>
-              {paragraph}
-            </p>
-          ))}
+        <div className="flex justify-start gap-8 flex-wrap ">
+          {touristSpot.content &&
+            touristSpot.content.split("|").map((paragraph, index) => (
+              <p className="text-white text-justify" key={index}>
+                {paragraph}
+              </p>
+            ))}
+        </div>
+        <div className="flex justify-center gap-8 flex-wrap py-5">
+          <Image src={touristSpot.imageOne} alt="" width={500} height={321} />
+          <Image src={touristSpot.imageTwo} alt="" width={500} height={321} />
+          <Image src={touristSpot.imageThree} alt="" width={500} height={321} />
+        </div>
       </div>
-      <div className="flex justify-center gap-8 flex-wrap py-5">
-        <Image src={touristSpot.imageOne} alt="" width={500} height={321} />
-        <Image src={touristSpot.imageTwo} alt="" width={500} height={321} />
-        <Image src={touristSpot.imageThree} alt="" width={500} height={321} />
-      </div>
-    </div>
+    </>
   );
 }
