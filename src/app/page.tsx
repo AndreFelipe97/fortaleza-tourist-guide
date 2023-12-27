@@ -1,50 +1,70 @@
-import { ParqueDoCoco6 } from "@/assets/imgs/ParqueDoCoco";
-import { DragaoDoMar04 } from "@/assets/imgs/dragaoDoMar";
-import { TheatroJoseDeAlencar5 } from "@/assets/imgs/theatroJoseDeAlencar";
-import { MecardoCentral05 } from "@/assets/imgs/mercadoCentral";
-import { ArenaCastelao03 } from "@/assets/imgs/arenaCastelão";
-import { FeirinhaDaBeiraMar01 } from "@/assets/imgs/feirinhaBeiraMar";
+"use client";
 import { CardLocale } from "@/components/cardLocale";
 import { Loading } from "@/components/loading";
-import { getTouristSpots } from "@/services/files";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useAllPrismicDocumentsByType } from "@prismicio/react";
 
 interface TouristSpot {
+  uid: string;
   title: string;
-  slug: string;
-  content: string;
+  imageOne: string;
 }
 
-export default async function Home() {
-  const touristSpots = await getTouristSpots();
+export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [spots, setSpots] = useState<TouristSpot[]>([]);
 
-  function mainBanner(spot: TouristSpot) {
-    if (spot.slug === "centro-dragão-do-mar-de-arte-e-cultura") {
-      return DragaoDoMar04;
-    } else if (spot.slug === "parque-estadual-do-coco") {
-      return ParqueDoCoco6;
-    } else if (spot.slug === "theatro-jose-de-Alencar") {
-      return TheatroJoseDeAlencar5;
-    } else if (spot.slug === "mercado-central-de-fortaleza") {
-      return MecardoCentral05;
-    } else if (spot.slug === "arena-castelao") {
-      return ArenaCastelao03;
+  const [documents] = useAllPrismicDocumentsByType("attraction");
+
+  const loadSpots = useCallback(async () => {
+    try {
+      const spots = documents?.map((spot) => {
+        return {
+          uid: spot.uid,
+          title: spot.data.title[0].text,
+          imageOne: spot.data.imageone.url,
+        };
+      });
+
+      setSpots(spots as TouristSpot[]);
+      console.log(documents);
+    } catch (error) {
+      console.log(error);
     }
-    return FeirinhaDaBeiraMar01;
+  }, [documents]);
+
+  useEffect(() => {
+    setLoading(true);
+    loadSpots();
+    setLoading(false);
+  }, [loadSpots]);
+
+  useEffect(() => {
+    setLoading(true);
+    loadSpots();
+    setLoading(false);
+  }, [documents, loadSpots]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center gap-8 flex-wrap py-5">
+        <Loading />
+      </div>
+    );
   }
 
   return (
-    <>
-      <div className="flex justify-center gap-8 flex-wrap py-5">
-        {touristSpots.map((spot: TouristSpot) => (
+    <div className="flex justify-center gap-8 flex-wrap py-5">
+      {spots &&
+        spots &&
+        spots.map((spot) => (
           <CardLocale
             key={spot.title}
             label={spot.title}
-            img={mainBanner(spot)}
-            page={`/${spot.slug}`}
+            img={spot.imageOne}
+            page={`/${spot.uid}`}
           />
         ))}
-      </div>
-    </>
+    </div>
   );
 }

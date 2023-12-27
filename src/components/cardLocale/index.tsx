@@ -4,7 +4,7 @@ import React from "react";
 
 interface CardLocaleProps {
   label: string;
-  img: StaticImageData;
+  img: string;
   page: string;
 }
 
