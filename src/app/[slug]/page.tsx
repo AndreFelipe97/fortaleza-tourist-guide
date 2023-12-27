@@ -1,5 +1,4 @@
 "use client";
-
 import { Loading } from "@/components/loading";
 import { getTouristSpot } from "@/services/getFile";
 import {
@@ -74,7 +73,6 @@ export default function Spot() {
 
   useEffect(() => {
     setLoading(true);
-
     getSpot();
 
     setLoading(false);

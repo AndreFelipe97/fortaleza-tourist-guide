@@ -1,5 +1,5 @@
-'use server';
-import fs from 'fs';
+'use server'
+import * as fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
@@ -15,7 +15,9 @@ export async function getTouristSpot(slug: string): Promise<TouristSpot> {
   const files = fs.readdirSync(directory);
   const touristSpots = files.map((filename) => {
     const fullPath = path.join(directory, filename);
+    console.log(fullPath);
     const fileContent = fs.readFileSync(fullPath, 'utf8');
+    console.log(fileContent);
     const { data, content } = matter(fileContent);
 
     const slug = data.slug;
