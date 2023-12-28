@@ -62,7 +62,7 @@ export default function Home() {
             key={spot.title}
             label={spot.title}
             img={spot.imageOne}
-            page={`/${spot.uid}`}
+            page={spot.uid}
           />
         ))}
     </div>

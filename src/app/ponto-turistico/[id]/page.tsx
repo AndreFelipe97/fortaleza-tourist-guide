@@ -20,7 +20,8 @@ export default function Spot() {
   const [touristSpot, setTouristSpot] = useState<TouristSpot>(
     {} as TouristSpot
   );
-  const id = usePathname()?.replace("/", "");
+  const pathname = usePathname();
+  const [, id] = pathname ? pathname.replace("/", "").split("/") : [];
   const [document] = usePrismicDocumentByUID("attraction", id as string);
 
   const loadSpot = useCallback(async () => {
