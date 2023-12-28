@@ -1,8 +1,7 @@
 import { CardLocale } from "@/components/cardLocale";
-import { Loading } from "@/components/loading";
-import { useCallback, useEffect, useState } from "react";
-import { useAllPrismicDocumentsByType } from "@prismicio/react";
 import { getPrismicAPI } from "@/services/prismicApi";
+
+export const revalidate = 60 * 60 * 24 * 7; // 7 days
 
 export default async function Home() {
   const spots = await getPrismicAPI();
