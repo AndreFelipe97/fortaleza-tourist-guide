@@ -9,7 +9,10 @@ import Link from "next/link";
 interface TouristSpot {
   uid: string;
   title: string;
-  content: string;
+  content: {
+    type: string;
+    text: string;
+  }[];
   imageOne: string;
   imageTwo: string;
   imageThree: string;
@@ -29,7 +32,7 @@ export default function Spot() {
       const spot = {
         uid: document?.uid,
         title: document?.data.title[0].text,
-        content: document?.data.content[0].text,
+        content: document?.data.content,
         imageOne: document?.data.imageone.url,
         imageTwo: document?.data.imagetwo.url,
         imageThree: document?.data.imagethree.url,
@@ -51,14 +54,6 @@ export default function Spot() {
     loadSpot();
     setLoading(false);
   }, [document, id, loadSpot]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <Loading />
-      </div>
-    );
-  }
 
   return (
     <>
@@ -91,9 +86,9 @@ export default function Spot() {
 
         <div className="flex justify-start gap-8 flex-wrap">
           {touristSpot.content &&
-            touristSpot.content.split("|").map((paragraph, index) => (
+            touristSpot.content.map((paragraph, index) => (
               <p className="text-white text-justify" key={index}>
-                {paragraph}
+                {paragraph.text}
               </p>
             ))}
         </div>
