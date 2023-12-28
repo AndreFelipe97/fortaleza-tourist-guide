@@ -1,6 +1,6 @@
 "use client";
 
-import { client } from "@/services/prismic";
+import { client } from "@/lib/prismic";
 import { PrismicProvider } from "@prismicio/react";
 import { ReactNode } from "react";
 
