@@ -2,6 +2,7 @@
 
 import { client } from "@/lib/prismic";
 import { PrismicProvider } from "@prismicio/react";
+import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 
 interface ProvidersProps {
@@ -9,7 +10,11 @@ interface ProvidersProps {
 }
 
 const Providers = ({ children }: ProvidersProps) => {
-  return <PrismicProvider client={client}>{children}</PrismicProvider>;
+  return (
+    <SessionProvider>
+      <PrismicProvider client={client}>{children}</PrismicProvider>
+    </SessionProvider>
+  );
 };
 
 export { Providers };
